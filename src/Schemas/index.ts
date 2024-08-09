@@ -28,6 +28,23 @@ export const ProductSchema = z.object({
   }),
   createdAt: z.date({ message: "Invalid date" }).optional(),
   imageUrl: z.string({ message: "Invalid image URL" }).optional(),
+  sizes: z
+    .array(
+      z.object({
+        id: z.string().uuid({ message: "Invalid ID" }).optional(),
+        productId: z
+          .string()
+          .uuid({ message: "Invalid product ID" })
+          .optional(),
+        size: z.enum(["Small", "Medium", "Large"], {
+          message: "Invalid size",
+        }),
+        price: z.number({ message: "Invalid price" }).positive({
+          message: "Price must be a positive number",
+        }),
+      })
+    )
+    .optional(),
 });
 
 export const CreateProductSchema = ProductSchema.extend({

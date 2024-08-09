@@ -1,4 +1,3 @@
-import { validate } from "uuid";
 import * as ProductController from "../Controllers/ProductController";
 import { NextFunction, Request, Response } from "express";
 import { CreateProductSchema, UpdateProductSchema, UUID } from "../Schemas";
@@ -132,7 +131,8 @@ export const deleteProductById = async (
   if (!id) {
     throw new Error("some fields are missing");
   }
-  if (!validate(id)) {
+  const result = UUID.safeParse(id);
+  if (!result.success) {
     throw new Error("Invalid id");
   }
   try {

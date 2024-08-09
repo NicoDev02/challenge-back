@@ -5,6 +5,7 @@
 !.yarn/sdks
 !.yarn/versions
 
+/coverage
 .pnp.*
 
 # dotenv environment variables
