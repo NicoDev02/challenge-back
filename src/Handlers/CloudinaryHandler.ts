@@ -13,7 +13,7 @@ export const cloudinaryUploadHandler = async (
     const { image } = req.body;
     const result = await cloudinaryUploadController(image);
     console.log("result from handler", result);
-    res.status(200).json(result);
+    res.status(200).json(result.secure_url);
   } catch (error) {
     next(error);
   }
