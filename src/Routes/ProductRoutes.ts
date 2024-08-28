@@ -1,13 +1,15 @@
 import { Router } from "express";
 import * as ProductHandler from "../Handlers/ProductHandler";
+import checkJwt from "../Middlewares/authMiddleware";
 
 const ProductRoutes = Router();
 
 ProductRoutes.get("/", ProductHandler.getAllProducts);
+ProductRoutes.get("/:id", ProductHandler.getProductById);
+
+ProductRoutes.use(checkJwt);
 
 ProductRoutes.post("/", ProductHandler.createProduct);
-
-ProductRoutes.get("/:id", ProductHandler.getProductById);
 
 ProductRoutes.delete("/:id", ProductHandler.deleteProductById);
 

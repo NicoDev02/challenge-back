@@ -1,7 +1,10 @@
 import { Router } from "express";
 import * as UserHandler from "../Handlers/UserHandler";
+import checkJwt from "../Middlewares/authMiddleware";
 
 const UserRoutes = Router();
+
+UserRoutes.use(checkJwt);
 
 UserRoutes.get("/", UserHandler.getAllUsers);
 

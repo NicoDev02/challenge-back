@@ -55,6 +55,7 @@ export const createProduct = async (
     ) {
       throw new Error("some fields are missing");
     }
+
     const result = CreateProductSchema.safeParse({
       categoryId,
       description,
@@ -62,10 +63,13 @@ export const createProduct = async (
       name,
       stock,
       about,
-      sizes,
+      sizes: sizes.map((size: { size: string; price: string }) => ({
+        size: size.size,
+        price: Number(size.price),
+      })),
     });
     if (!result.success) {
-      throw new Error(result.error.message);
+      throw result.error;
     }
     const product = await ProductController.createProduct({
       categoryId,
@@ -91,7 +95,7 @@ export const updateProductById = async (
     const { id } = req.params;
     const { categoryId, description, imageUrl, name, stock, about, sizes } =
       req.body;
-
+    console.log(req.body, "AAAAAAAAAAAAAAAAAAAAA");
     const result = UpdateProductSchema.safeParse({
       id,
       categoryId,
@@ -102,7 +106,7 @@ export const updateProductById = async (
       about,
       sizes,
     });
-
+    console.log(result);
     if (!result.success) {
       throw new Error(result.error.message);
     }
@@ -116,6 +120,7 @@ export const updateProductById = async (
       about,
       sizes,
     });
+    console.log(product);
     res.status(200).json(product);
   } catch (error) {
     next(error);

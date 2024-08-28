@@ -3,9 +3,11 @@
   "packageManager": "yarn@4.0.2",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
+    "cloudinary": "^2.4.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-oauth2-jwt-bearer": "^1.6.0",

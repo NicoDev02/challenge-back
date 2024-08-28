@@ -1592,6 +1592,7 @@ __metadata:
     "@types/jest": "npm:^29.5.12"
     "@types/pg": "npm:^8"
     "@types/uuid": "npm:^10"
+    cloudinary: "npm:^2.4.0"
     dotenv: "npm:^16.4.5"
     express: "npm:^4.19.2"
     express-oauth2-jwt-bearer: "npm:^1.6.0"
@@ -1677,6 +1678,16 @@ __metadata:
     strip-ansi: "npm:^6.0.1"
     wrap-ansi: "npm:^7.0.0"
   checksum: 4bda0f09c340cbb6dfdc1ed508b3ca080f12992c18d68c6be4d9cf51756033d5266e61ec57529e610dacbf4da1c634423b0c1b11037709cc6b09045cbd815df5
+  languageName: node
+  linkType: hard
+
+"cloudinary@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "cloudinary@npm:2.4.0"
+  dependencies:
+    lodash: "npm:^4.17.21"
+    q: "npm:^1.5.1"
+  checksum: 68a31f15b529733583c330251f225e3d9a6e753904c68edfadda7309fcce04bf5eb9f25f1c6050e623bfe4c4ea747345d6cb92b7ccc5d150806f058a04bdaa9b
   languageName: node
   linkType: hard
 
@@ -4441,6 +4452,13 @@ __metadata:
   version: 6.1.0
   resolution: "pure-rand@npm:6.1.0"
   checksum: 1abe217897bf74dcb3a0c9aba3555fe975023147b48db540aa2faf507aee91c03bf54f6aef0eb2bf59cc259a16d06b28eca37f0dc426d94f4692aeff02fb0e65
+  languageName: node
+  linkType: hard
+
+"q@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "q@npm:1.5.1"
+  checksum: 7855fbdba126cb7e92ef3a16b47ba998c0786ec7fface236e3eb0135b65df36429d91a86b1fff3ab0927b4ac4ee88a2c44527c7c3b8e2a37efbec9fe34803df4
   languageName: node
   linkType: hard
 

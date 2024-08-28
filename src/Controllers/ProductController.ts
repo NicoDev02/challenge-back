@@ -87,10 +87,20 @@ export const updateProductById = async ({
     if (sizes) {
       await Promise.all(
         sizes.map(async (size) => {
-          await Size.update(
-            { size: size.size, price: Number(size.price) },
-            { where: { id: size.id } }
-          );
+          console.log(size);
+          if (!size.id) {
+            Size.create({
+              productId: id,
+              size: size.size,
+              price: Number(size.price),
+            });
+          } else {
+            console.log(size);
+            await Size.update(
+              { size: size.size, price: Number(size.price) },
+              { where: { id: size.id } }
+            );
+          }
         })
       );
     }
@@ -101,26 +111,35 @@ export const updateProductById = async ({
     if (stock !== undefined) updateData.stock = stock;
     if (about !== undefined) updateData.about = about;
     if (categoryId !== undefined) updateData.categoryId = categoryId;
-
+    console.log(updateData);
     const [updated] = await Product.update(updateData, { where: { id } });
     if (!updated) {
       throw new Error("Product not found");
     }
+    console.log(updated);
     const updatedProduct = await Product.findByPk(id, {
       include: [{ model: Size, as: "sizes" }],
     });
+    console.log(updatedProduct);
     return updatedProduct;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
 
 export const deleteProductById = async (id: string) => {
   try {
-    const product = await Product.findByPk(id);
+    const product = await Product.findByPk(id, {
+      include: [{ model: Size, as: "sizes" }],
+    });
+
     if (!product) {
       throw new Error("Product not found");
     }
+
+    await Size.destroy({ where: { productId: id } });
+
     await product.destroy();
     return { message: "Product deleted successfully" };
   } catch (error) {

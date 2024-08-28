@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import * as userController from "../Controllers/UserController";
-import { validate } from "uuid";
 import { UserSchema, UUID } from "../Schemas";
 export const getAllUsers = async (
   req: Request,

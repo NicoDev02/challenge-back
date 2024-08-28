@@ -40,7 +40,7 @@ const Product = <ProductModelStatic>sequelize.define<ProductInstance>(
       defaultValue: new Date(),
     },
     imageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1024),
     },
   },
   {
